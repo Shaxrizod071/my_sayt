@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/frontend/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Login</h1>
+
+      <div class="grid-2" style="margin-top: 10px">
+        <div class="card">
+          <h2>Kiruvchi login</h2>
+
+          <form id="loginForm">
+            <label for="loginInput">Login</label>
+            <input id="loginInput" name="login" type="text" required />
+
+            <label for="passwordInput">Parol</label>
+            <input id="passwordInput" name="password" type="password" required />
+
+            <div style="margin-top: 12px">
+              <button type="submit">Kirish</button>
+            </div>
+
+            <div id="loginError" class="error" style="display: none"></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>Tez student yaratish</h2>
+          <p class="muted">Test uchun: login/parol bilan kirish oson bo'ladi.</p>
+
+          <form id="registerForm">
+            <label for="regFirstName">First name</label>
+            <input id="regFirstName" name="first_name" type="text" required value="Test" />
+
+            <label for="regLastName">Last name</label>
+            <input id="regLastName" name="last_name" type="text" required value="User" />
+
+            <label for="regEmail">Email</label>
+            <input id="regEmail" name="email" type="email" required />
+
+            <label for="regLogin">Login</label>
+            <input id="regLogin" name="login" type="text" required />
+
+            <label for="regPassword">Parol</label>
+            <input id="regPassword" name="password" type="password" required />
+
+            <div style="margin-top: 12px">
+              <button type="submit">Student yaratish</button>
+            </div>
+
+            <div id="registerError" class="error" style="display: none"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/frontend/app.js"></script>
+  </body>
+</html>
+
