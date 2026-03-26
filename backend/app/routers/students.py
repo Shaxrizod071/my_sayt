@@ -6,11 +6,16 @@ from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 from sqlalchemy import case
 from sqlalchemy.orm import Session
 
-from .. import models, schemas
-from ..database import get_db
-from ..services import evidence as evidence_service
-from ..services import gpa as gpa_service, grants as grants_service
-from ..services.grant_sections import ensure_grant_sections_for_student
+from app import models, schemas
+from app.database import get_db
+
+# Servislarni guruhlash
+from app.services import (
+    evidence as evidence_service,
+    gpa as gpa_service,
+    grants as grants_service
+)
+from app.services.grant_sections import ensure_grant_sections_for_student
 
 router = APIRouter(prefix="/students", tags=["students"])
 

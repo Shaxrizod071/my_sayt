@@ -1,13 +1,10 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
-
-# Nuqtalarni olib tashlaymiz
-from database import engine, ensure_schema
-import models
-from routers import students, admin
-from services.grant_sections import bootstrap_grant_sections_all_students
-
+from app.database import engine, ensure_schema
+from app import models
+from app.routers import students, admin
+from app.services.grant_sections import bootstrap_grant_sections_all_students
 models.Base.metadata.create_all(bind=engine)
 ensure_schema()
 bootstrap_grant_sections_all_students()

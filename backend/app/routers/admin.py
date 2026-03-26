@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from .. import models, schemas
-from ..database import get_db
-from ..services import ratings
+from app import models, schemas
+from app.database import get_db
+from app.services import ratings
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
