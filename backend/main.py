@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Loyiha ildiz papkasini Python qidiruv yo'lagiga qo'shish
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
@@ -23,3 +29,6 @@ app.include_router(admin.router)
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the student backend API"}
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
