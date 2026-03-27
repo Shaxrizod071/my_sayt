@@ -1,3 +1,4 @@
+const API_URL = "https://my_sayt-20.onrender.com"; // O'zingizning linkni qo'ying
 function el(id) {
   return document.getElementById(id);
 }
@@ -16,35 +17,33 @@ function hideError(boxId) {
   box.style.display = "none";
 }
 
+// --- BU QISMNI NUSXALAB, ESKI apiPost/apiGet LARNI O'RNIGA QO'YING ---
+
 async function apiPostMultipart(path, formData) {
-  const resp = await fetch(path, {
+  // Boshiga ${API_URL} qo'shildi, shunda so'rov Renderga ketadi
+  const resp = await fetch(`${API_URL}${path}`, {
     method: "POST",
     body: formData,
   });
-
-  const text = await resp.text();
-  let data = null;
-  try {
-    data = text ? JSON.parse(text) : null;
-  } catch (_) {
-    data = text;
-  }
-
-  if (!resp.ok) {
-    const msg = data && data.detail ? data.detail : `Request failed: ${resp.status}`;
-    throw new Error(msg);
-  }
-
-  return data;
+  return handleResponse(resp);
 }
 
 async function apiPost(path, payload) {
-  const resp = await fetch(path, {
+  const resp = await fetch(`${API_URL}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  return handleResponse(resp);
+}
 
+async function apiGet(path) {
+  const resp = await fetch(`${API_URL}${path}`);
+  return handleResponse(resp);
+}
+
+// Barcha xatolarni bir joyda tekshirish uchun yordamchi funksiya
+async function handleResponse(resp) {
   const text = await resp.text();
   let data = null;
   try {
@@ -54,12 +53,12 @@ async function apiPost(path, payload) {
   }
 
   if (!resp.ok) {
-    const msg = data && data.detail ? data.detail : `Request failed: ${resp.status}`;
+    const msg = data && data.detail ? data.detail : `Xato: ${resp.status}`;
     throw new Error(msg);
   }
-
   return data;
 }
+  return data;
 
 async function apiGet(path) {
   const resp = await fetch(path);
