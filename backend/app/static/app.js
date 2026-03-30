@@ -1,4 +1,5 @@
-const API_URL = "https://my_sayt-20.onrender.com"; // O'zingizning linkni qo'ying
+// Eski xato manzilni o'chirib, buni yozing:
+const API_URL = window.location.origin;
 function el(id) {
   return document.getElementById(id);
 }
@@ -65,7 +66,7 @@ async function apiGet(path) {
   const text = await resp.text();
   let data = null;
   try {
-    data = text ? JSON.parse(text) : null;
+    data = text ? JSON.parse(text) : null; 
   } catch (_) {
     data = text;
   }
